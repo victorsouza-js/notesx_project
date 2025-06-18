@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -67,7 +68,7 @@ class _LoginState extends State<Login> {
                 child: TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.email, color: Colors.black),
+                    prefixIcon: Icon(FontAwesomeIcons.envelope, color: Colors.black),
                     hintText: 'Email',
                     hintStyle: TextStyle(
                       color: Colors.black,
@@ -95,7 +96,7 @@ class _LoginState extends State<Login> {
                   controller: _passwordController,
                   obscureText: !_isPasswordVisible,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.lock, color: Colors.black),
+                    prefixIcon: Icon(FontAwesomeIcons.lock, color: Colors.black),
                     hintText: 'Senha',
                     hintStyle: TextStyle(
                       color: Colors.black,
@@ -108,8 +109,8 @@ class _LoginState extends State<Login> {
                     suffixIcon: IconButton(
                       icon: Icon(
                         _isPasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
+                            ? FontAwesomeIcons.eyeLowVision
+                            : FontAwesomeIcons.eye,
                         color: Colors.black,
                       ),
                       onPressed: () {
@@ -166,6 +167,31 @@ class _LoginState extends State<Login> {
                   foregroundColor: Colors.white,
                 ),
                 child: Text('Entrar'),
+              ),
+              Padding(padding: EdgeInsets.all(15)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Não tem uma conta?',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/register');
+                    },
+                    child: Text(
+                      'Registrar',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
