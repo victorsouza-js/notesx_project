@@ -11,9 +11,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  
-  
-  
   Future<void> _salvarLogin(String email, String password) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('email', email);
@@ -29,6 +26,15 @@ class _LoginState extends State<Login> {
       _emailController.text = email;
       _passwordController.text = password;
     }
+  }
+
+  Future<bool> validarLogin() async {
+    final prefs = await SharedPreferences.getInstance();
+    final password = prefs.getString('password');
+    final email = prefs.getString('email');
+
+    return _passwordController.text == password &&
+        _emailController.text == email;
   }
 
   final TextEditingController _emailController = TextEditingController();
@@ -60,7 +66,7 @@ class _LoginState extends State<Login> {
                 'Bem -vindo ao NotesX',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              
+
               Padding(padding: EdgeInsets.all(15)),
               //SizedBox(height: 20,),//
               Padding(
@@ -68,7 +74,10 @@ class _LoginState extends State<Login> {
                 child: TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(FontAwesomeIcons.envelope, color: Colors.black),
+                    prefixIcon: Icon(
+                      FontAwesomeIcons.envelope,
+                      color: Colors.black,
+                    ),
                     hintText: 'Email',
                     hintStyle: TextStyle(
                       color: Colors.black,
@@ -96,7 +105,10 @@ class _LoginState extends State<Login> {
                   controller: _passwordController,
                   obscureText: !_isPasswordVisible,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(FontAwesomeIcons.lock, color: Colors.black),
+                    prefixIcon: Icon(
+                      FontAwesomeIcons.lock,
+                      color: Colors.black,
+                    ),
                     hintText: 'Senha',
                     hintStyle: TextStyle(
                       color: Colors.black,
@@ -131,12 +143,11 @@ class _LoginState extends State<Login> {
                 ),
               ),
               Row(
-                
                 children: [
                   Padding(padding: EdgeInsets.all(2.6)),
-                  TextButton(onPressed: (){}, child: 
-                    Text(
-
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
                       'Esqueceu sua senha?',
                       style: TextStyle(
                         color: Colors.black,
@@ -149,13 +160,23 @@ class _LoginState extends State<Login> {
 
               Padding(padding: EdgeInsets.all(15)),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    _salvarLogin(
-                      _emailController.text,
-                      _passwordController.text,
-                    );
-                    Navigator.pushNamed(context, '/');
+                    if (await validarLogin()) {
+                      await _salvarLogin(
+                        _emailController.text,
+                        _passwordController.text,
+                      );
+                      Navigator.pushNamed(context, '/');
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor: Colors.red,
+                          duration: Duration(seconds: 2),
+                          content: Text('Email e senha incorretos'),
+                        ),
+                      );
+                    }
                   }
                 },
                 style: ElevatedButton.styleFrom(
@@ -181,7 +202,7 @@ class _LoginState extends State<Login> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/register');
+                      Navigator.pushNamed(context, '/cadastro');
                     },
                     child: Text(
                       'Registrar',
