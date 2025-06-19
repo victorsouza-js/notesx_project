@@ -144,11 +144,24 @@ class _LoginState extends State<Login> {
               ),
               Row(
                 children: [
-                  Padding(padding: EdgeInsets.all(2.6)),
+                  Padding(padding: EdgeInsets.all(2.4)),
                   TextButton(
                     onPressed: () {},
                     child: Text(
                       'Esqueceu sua senha?',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Spacer(),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/cadastro');
+                    },
+                    child: Text(
+                      'Cadastre-se',
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -190,30 +203,6 @@ class _LoginState extends State<Login> {
                 child: Text('Entrar'),
               ),
               Padding(padding: EdgeInsets.all(15)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Não tem uma conta?',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/cadastro');
-                    },
-                    child: Text(
-                      'Registrar',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
             ],
           ),
         ),

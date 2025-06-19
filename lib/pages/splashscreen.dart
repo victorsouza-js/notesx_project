@@ -102,7 +102,7 @@ class _SplashscreenState extends State<Splashscreen>
                 // Ícone com animação de rotação sutil
                 TweenAnimationBuilder<double>(
                   duration: Duration(milliseconds: 2000),
-                  tween: Tween(begin: 0.0, end: 1.0),
+                  tween: Tween(begin: 0.0, end: 0.8),
                   builder: (context, value, child) {
                     return Transform.scale(
                       scale: 0.8 + (value * 0.5), // Cresce de 0.8 para 1.0
