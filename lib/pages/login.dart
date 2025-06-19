@@ -53,6 +53,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: Center(
         child: Form(
@@ -74,6 +75,7 @@ class _LoginState extends State<Login> {
                 child: TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
+                    
                     prefixIcon: Icon(
                       FontAwesomeIcons.envelope,
                       color: Colors.black,
@@ -83,8 +85,11 @@ class _LoginState extends State<Login> {
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                     focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
                       borderSide: BorderSide(color: Colors.black, width: 2.0),
                     ),
                   ),
@@ -114,15 +119,18 @@ class _LoginState extends State<Login> {
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                     focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
                       borderSide: BorderSide(color: Colors.black, width: 2.0),
                     ),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _isPasswordVisible
-                            ? FontAwesomeIcons.eyeLowVision
-                            : FontAwesomeIcons.eye,
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                         color: Colors.black,
                       ),
                       onPressed: () {
