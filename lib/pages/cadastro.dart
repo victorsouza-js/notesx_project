@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Cadastro extends StatefulWidget {
   const Cadastro({super.key});
@@ -127,7 +128,17 @@ class _CadastroState extends State<Cadastro> with TickerProviderStateMixin {
       // Simular chamada de API
       await Future.delayed(const Duration(seconds: 2));
 
+      // Salvar email e senha no SharedPreferences
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('email', _emailController.text.trim());
+      await prefs.setString('password', _passwordController.text);
+
       _showSnackBar('Cadastro realizado com sucesso!', isError: false);
+
+      // Opcional: navegar para tela de login após cadastro
+      Future.delayed(const Duration(seconds: 1), () {
+        Navigator.pop(context); // Volta para tela de login
+      });
     } catch (e) {
       _showSnackBar(
         'Erro ao realizar cadastro: ${e.toString()}',

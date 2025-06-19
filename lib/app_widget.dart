@@ -4,6 +4,8 @@ import 'package:notesx_project/pages/home.dart';
 import 'package:notesx_project/pages/splashscreen.dart';
 import 'package:notesx_project/pages/login.dart';
 import 'package:notesx_project/pages/cadastro.dart';
+import 'package:notesx_project/pages/redefinir_senha.dart';
+
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
@@ -18,6 +20,7 @@ class AppWidget extends StatelessWidget {
         '/splash': (context) => Splashscreen(),
         '/login': (context) => Login(),
         '/cadastro': (context) => Cadastro(),
+        '/redefinir_senha': (context) => RedefinirSenha(),
       },
       );
       

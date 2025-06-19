@@ -154,7 +154,9 @@ class _LoginState extends State<Login> {
                 children: [
                   Padding(padding: EdgeInsets.all(2.4)),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/redefinir_senha');
+                    },
                     child: Text(
                       'Esqueceu sua senha?',
                       style: TextStyle(
