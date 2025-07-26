@@ -23,6 +23,5 @@ class AppWidget extends StatelessWidget {
         '/redefinir_senha': (context) => RedefinirSenha(),
       },
       );
-      
   }
 }

@@ -53,7 +53,6 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       body: Center(
         child: Form(
@@ -75,7 +74,6 @@ class _LoginState extends State<Login> {
                 child: TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
-                    
                     prefixIcon: Icon(
                       FontAwesomeIcons.envelope,
                       color: Colors.black,
